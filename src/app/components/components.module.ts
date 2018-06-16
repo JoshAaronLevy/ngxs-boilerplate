@@ -5,10 +5,16 @@ import { HomeComponent } from './content/home/home.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { StateModule } from '../@ngxs/state.module';
+import { MaterialModule } from '../@material/material.module';
+import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 const routes: Routes = [
   {
-    path: '', children: [
+    path: '',
+    children: [
       {
         path: '',
         component: HomeComponent,
@@ -21,9 +27,10 @@ const routes: Routes = [
 
 @NgModule({
   imports: [
+    MaterialModule,
     NgxChartsModule,
-    RouterModule.forChild(routes),
-    StateModule
+    StateModule,
+    RouterModule.forChild(routes)
   ],
   declarations: [
     HomeComponent,
