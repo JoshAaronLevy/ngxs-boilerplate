@@ -1,24 +1,34 @@
 import { NgModule } from '@angular/core';
-import { AppRoutingModule } from '../app-routing.module';
-import { ContentComponent } from './content/content.component';
+import { RouterModule, Routes } from '@angular/router';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { HomeComponent } from './content/home/home.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { StateModule } from '../@ngxs/state.module';
-import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NgxChartsModule } from '@swimlane/ngx-charts';
+
+const routes: Routes = [
+  {
+    path: '', children: [
+      {
+        path: '',
+        component: HomeComponent,
+        outlet: 'content'
+      }
+    ]
+  }
+];
 
 
 @NgModule({
   imports: [
-    AppRoutingModule,
-    BrowserModule,
-    StateModule,
-    BrowserAnimationsModule,
-    NgxChartsModule
+    NgxChartsModule,
+    RouterModule.forChild(routes),
+    StateModule
   ],
-  declarations: [ContentComponent, HomeComponent, SidebarComponent, NavbarComponent],
-  exports: []
+  declarations: [
+    HomeComponent,
+    NavbarComponent,
+    SidebarComponent
+  ]
 })
 export class ComponentsModule { }

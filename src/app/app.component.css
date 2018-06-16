@@ -1,23 +1,27 @@
-.container {
-    width: 100vw;
-    height: 100vh;
-    display: grid;
-    grid-template-columns: 250px auto;
-    grid-template-rows: 64px auto;
-    grid-template-areas: "sidebar navbar navbar" "sidebar content content"
+.loader {
+  border: 16px solid #f3f3f3;
+  /* Light grey */
+  border-top: 16px solid #3498db;
+  /* Blue */
+  border-radius: 50%;
+  width: 120px;
+  height: 120px;
+  animation: spin 2s linear infinite;
 }
 
-.sidebar {
-    grid-area: sidebar;
-    background-color: blue;
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
-.content {
-    grid-area: content;
-    background-color: red;
-}
-
-.navbar {
-    grid-area: navbar;
-    background-color: green;
+.cover-all {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
