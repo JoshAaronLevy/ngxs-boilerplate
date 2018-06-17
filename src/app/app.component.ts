@@ -28,7 +28,6 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.loading = false;
     this.router.navigate(['/lazy']);
   }
 }

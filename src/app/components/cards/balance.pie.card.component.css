@@ -1,0 +1,27 @@
+
+.card::after {
+  content: '';
+  padding: 0.1rem;
+  box-shadow: 2px 2px 5px #ccc;
+}
+
+.card {
+  width: 100%;
+  display: grid;
+  grid-template-columns: auto;
+  grid-template-rows: auto;
+}
+
+.card-title {
+  display: grid;
+  padding: 0.5rem;
+  grid-template-columns: auto;
+  grid-template-rows: auto;
+  border-bottom: 1px solid #ccc;
+}
+
+.card-content {}
+
+.card-actions {
+  justify-self: flex-end;
+}

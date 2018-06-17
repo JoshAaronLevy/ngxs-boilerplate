@@ -1,15 +1,16 @@
 /* You can add global styles to this file, and also import other style files */
 
-body {
+html {
   padding: 0px;
   margin: 0px;
+  box-sizing: border-box;
 }
 
 body {
   margin: 0;
 }
 
-.loader{
+.loader {
   border: 16px solid #f3f3f3;
   border-top: 16px solid #3498db;
   border-radius: 50%;
@@ -33,4 +34,31 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.card::after {
+  content: '';
+  padding: 0.1rem;
+  box-shadow: 2px 2px 5px #ccc;
+}
+
+.card {
+  width: 100%;
+  display: grid;
+  grid-template-columns: auto;
+  grid-template-rows: auto;
+}
+
+.card-title {
+  display: grid;
+  padding: 0.5rem;
+  grid-template-columns: auto;
+  grid-template-rows: auto;
+  border-bottom: 1px solid #ccc;
+}
+
+.card-content {}
+
+.card-actions {
+  justify-self: flex-end;
 }
