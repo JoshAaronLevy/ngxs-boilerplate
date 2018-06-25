@@ -7,6 +7,7 @@ export interface IAppStateModel {
   route: string;
   user: string;
   size: string;
+  windowSizes: any[];
 }
 
 @State<IAppStateModel>({
@@ -14,7 +15,24 @@ export interface IAppStateModel {
   defaults: {
     route: '',
     user: undefined,
-    size: ''
+    size: '',
+    windowSizes: [
+      {
+        min: 0,
+        max: 600,
+        class: 'small'
+      },
+      {
+        min: 601,
+        max: 992,
+        class: 'medium'
+      },
+      {
+        min: 993,
+        max: Number.MAX_SAFE_INTEGER,
+        class: 'large'
+      }
+    ]
   }
 })
 export class AppState {
@@ -30,9 +48,11 @@ export class AppState {
   }
 
   @Action(ResizeViewPort)
-  resize({ patchState }: StateContext<IAppStateModel>, { payload }: ResizeViewPort) {
+  resize({ patchState }: StateContext<IAppStateModel>, { payload }: ResizeViewPort, state: IAppStateModel) {
     patchState({
-      size: payload
+      size: state.windowSizes.filter(ws => {
+        return ws.min <= payload && ws.max >= payload;
+      })[0].class
     });
   }
 

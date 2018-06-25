@@ -3,3 +3,8 @@ export class GetEntries {
   constructor() { }
 }
 
+export class SetCurrentMonth {
+  static readonly type = '[DATE] set';
+  constructor(public payload: Date) { }
+}
+

@@ -6,13 +6,15 @@ import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
 import { ServicesModule } from '../services/services.module';
 import { EntryService } from '../services/entry.service';
 import { EntriesState } from './stores/entries.state';
+import { FilterState } from './stores/filter.state';
 
 @NgModule({
   imports: [
     CommonModule,
     NgxsModule.forRoot([
       AppState,
-      EntriesState
+      EntriesState,
+      FilterState
     ]),
     NgxsReduxDevtoolsPluginModule.forRoot(),
     ServicesModule

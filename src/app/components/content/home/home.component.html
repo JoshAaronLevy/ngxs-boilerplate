@@ -1,3 +1,5 @@
-<app-balance-pie-card [data]="data">
+{{(income$|async)?.length}}
+{{(outgoing$|async)?.length}}
 
-</app-balance-pie-card>
+<button (click)="test()">TEST IT</button>
+<div>{{currentDate|date}}</div>

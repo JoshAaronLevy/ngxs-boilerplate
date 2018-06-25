@@ -14,7 +14,7 @@ export interface IFileObject {
 }
 
 export interface IEntry {
-    date: string;
+    date: Date;
     description: string;
     id: number;
     value: number;

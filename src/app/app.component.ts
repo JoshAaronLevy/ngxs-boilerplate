@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, NavigationStart, NavigationEnd } from '@angular/router';
-import { timeout } from 'q';
+import { NavigationEnd, NavigationStart, Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -19,15 +18,11 @@ export class AppComponent implements OnInit {
       } else if (event instanceof NavigationEnd) {
         this.loading = false;
       }
-      // NavigationEnd
-      // NavigationCancel
-      // NavigationError
-      // RoutesRecognized
     });
-
   }
 
   ngOnInit(): void {
     this.router.navigate(['/lazy']);
   }
+
 }
