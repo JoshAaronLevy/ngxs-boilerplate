@@ -6,6 +6,7 @@ import { GetEntries } from '../../@ngxs/actions/entries.actions';
 import { AppState } from '../../@ngxs/stores/app.state';
 import { EntriesState } from '../../@ngxs/stores/entries.state';
 import { IEntry } from '../../@ngxs/model/data.objects';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -17,7 +18,7 @@ export class NavbarComponent implements OnInit {
   @Select(AppState.getUser) user$: Observable<string>;
   @Select(EntriesState.entries) entries$: Observable<IEntry>;
 
-  constructor(private store: Store) { }
+  constructor(private store: Store, private router: Router) { }
 
   ngOnInit() {
   }
@@ -25,6 +26,7 @@ export class NavbarComponent implements OnInit {
   login() {
     this.store.dispatch(new Login('mr login test')).subscribe(res => {
       this.store.dispatch(new GetEntries());
+      this.router.navigate(['lazy', { outlets: { content: 'test' } }]);
     });
   }
 

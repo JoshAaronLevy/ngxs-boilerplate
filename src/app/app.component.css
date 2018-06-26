@@ -25,3 +25,15 @@
   justify-content: center;
   align-items: center;
 }
+
+.navbar {
+  background-color: green;
+}
+
+.content {
+  background-color: orange;
+}
+
+.sidebar {
+  background-color: blue;
+}

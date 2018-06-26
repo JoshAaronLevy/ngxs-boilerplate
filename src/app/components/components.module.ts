@@ -10,15 +10,24 @@ import { BalancePieCardComponent } from './cards/balance.pie.card.component';
 
 const routes: Routes = [
   {
+
     path: '',
-    children: [
-      {
-        path: '',
-        component: HomeComponent,
-        outlet: 'content'
-      }
-    ]
+    component: SidebarComponent,
+    outlet: 'sidebar'
+  },
+  {
+    path: 'test',
+    component: NavbarComponent,
+    outlet: 'content'
+  },
+
+  {
+    path: '',
+    component: NavbarComponent,
+    outlet: 'navbar'
   }
+
+
 ];
 
 
@@ -34,6 +43,6 @@ const routes: Routes = [
     NavbarComponent,
     SidebarComponent,
     BalancePieCardComponent
-]
+  ]
 })
 export class ComponentsModule { }

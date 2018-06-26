@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Select, Store } from '@ngxs/store';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { SetCurrentMonth } from '../../../@ngxs/actions/entries.actions';
+import { SetCurrentMonth, GetEntries } from '../../../@ngxs/actions/entries.actions';
 import { IEntry } from '../../../@ngxs/model/data.objects';
 import { EntriesState } from '../../../@ngxs/stores/entries.state';
+import { Router } from '@angular/router';
+import { tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-home',
@@ -18,32 +20,30 @@ export class HomeComponent implements OnInit {
   income$: BehaviorSubject<IEntry[]> = new BehaviorSubject([]);
   outgoing$: BehaviorSubject<IEntry[]> = new BehaviorSubject([]);
 
-  currentDate: Date = new Date();
-
-  constructor(private store: Store) { }
+  constructor(private store: Store, private router: Router) { }
 
   ngOnInit() {
 
-    this.currentMonth$.subscribe(cm => {
-      this.currentDate = cm;
-    });
-
+    this.store.dispatch(new GetEntries);
     this.entries$.subscribe((entries) => {
-      this.income$.next(entries.filter(e => {
-        return e.value >= 0
-          && e.date.getUTCFullYear() === this.currentDate.getUTCFullYear()
-          && e.date.getUTCMonth() === this.currentDate.getUTCMonth();
-      }));
-      this.outgoing$.next(entries.filter(e => {
-        return e.value < 0
-          && e.date.getUTCFullYear() === this.currentDate.getUTCFullYear()
-          && e.date.getUTCMonth() === this.currentDate.getUTCMonth();
+      this.currentMonth$.pipe(tap(date => {
+        this.income$.next(entries.filter(e => {
+          return e.value >= 0
+            && e.date.getUTCFullYear() === date.getUTCFullYear()
+            && e.date.getUTCMonth() === date.getUTCMonth();
+        }));
+        this.outgoing$.next(entries.filter(e => {
+          return e.value < 0
+            && e.date.getUTCFullYear() === date.getUTCFullYear()
+            && e.date.getUTCMonth() === date.getUTCMonth();
+        }));
       }));
     });
   }
 
   test() {
-    this.store.dispatch(new SetCurrentMonth(new Date(2018, 0, 1)));
+    // this.store.dispatch(new SetCurrentMonth(new Date(2018, 0, 1)));
+    this.router.navigate(['/test']);
   }
 
 }
