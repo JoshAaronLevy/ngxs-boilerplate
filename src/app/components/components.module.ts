@@ -6,7 +6,8 @@ import { StateModule } from '../@ngxs/state.module';
 import { HomeComponent } from './content/home/home.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
-import { BalancePieCardComponent } from './cards/balance.pie.card.component';
+import { LayoutModule } from '@angular/cdk/layout';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 const routes: Routes = [
   {
@@ -16,11 +17,10 @@ const routes: Routes = [
     outlet: 'sidebar'
   },
   {
-    path: 'test',
-    component: NavbarComponent,
-    outlet: 'content'
+    path: 'home',
+    outlet: 'content',
+    component: HomeComponent
   },
-
   {
     path: '',
     component: NavbarComponent,
@@ -36,13 +36,13 @@ const routes: Routes = [
     MaterialModule,
     NgxChartsModule,
     StateModule,
+    LayoutModule,
     RouterModule.forChild(routes)
   ],
   declarations: [
     HomeComponent,
     NavbarComponent,
-    SidebarComponent,
-    BalancePieCardComponent
+    SidebarComponent
   ]
 })
 export class ComponentsModule { }

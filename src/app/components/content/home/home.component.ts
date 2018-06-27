@@ -4,13 +4,13 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { SetCurrentMonth, GetEntries } from '../../../@ngxs/actions/entries.actions';
 import { IEntry } from '../../../@ngxs/model/data.objects';
 import { EntriesState } from '../../../@ngxs/stores/entries.state';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
 
@@ -20,7 +20,7 @@ export class HomeComponent implements OnInit {
   income$: BehaviorSubject<IEntry[]> = new BehaviorSubject([]);
   outgoing$: BehaviorSubject<IEntry[]> = new BehaviorSubject([]);
 
-  constructor(private store: Store, private router: Router) { }
+  constructor(private store: Store, private router: Router, private activeRoute: ActivatedRoute) { }
 
   ngOnInit() {
 
@@ -43,7 +43,7 @@ export class HomeComponent implements OnInit {
 
   test() {
     // this.store.dispatch(new SetCurrentMonth(new Date(2018, 0, 1)));
-    this.router.navigate(['/test']);
+    this.router.navigate(['app', { outlets: { content: 'test' } }]);
   }
 
 }

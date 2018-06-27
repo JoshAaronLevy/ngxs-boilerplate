@@ -26,14 +26,27 @@
   align-items: center;
 }
 
+.container {
+  height: 100%;
+  display: grid;
+  grid-template-areas: "navbar navbar" "sidebar content" "sidebar content";
+  grid-template-rows: min-content 1fr;
+  grid-template-columns: minmax(250px, max-content) auto;
+}
+
 .navbar {
+  grid-area: navbar;
   background-color: green;
 }
 
 .content {
+  grid-area: content;
   background-color: orange;
+  height: 100%;
 }
 
 .sidebar {
+  grid-area: sidebar;
   background-color: blue;
+  height: 100%;
 }

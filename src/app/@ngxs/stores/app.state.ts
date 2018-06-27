@@ -1,5 +1,5 @@
 import { State, Action, StateContext, Selector } from '@ngxs/store';
-import { ResizeViewPort, Login, Logout, Navigate } from '../actions/app.actions';
+import { ResizeViewPort, Login, Logout, Navigate, NoBackendAvailable } from '../actions/app.actions';
 import { GetEntries } from '../actions/entries.actions';
 import { IEntriesStateModel } from './entries.state';
 
@@ -8,6 +8,7 @@ export interface IAppStateModel {
   user: string;
   size: string;
   windowSizes: any[];
+  mockData?: boolean;
 }
 
 @State<IAppStateModel>({
@@ -75,6 +76,11 @@ export class AppState {
     patchState({
       route: payload
     });
+  }
+
+  @Action(NoBackendAvailable)
+  mockData({ patchState }: StateContext<IAppStateModel>) {
+    alert('there is no backend available. Do you want to use mocked data?');
   }
 
 
